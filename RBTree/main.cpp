@@ -36,7 +36,7 @@ int main()
 	{
 		rbTree.DeleteElement(i);
 	}
-	//��ȱ���
+	//广度遍历
 	rbTree.BFS();
 	std::cout << "------------------------------" << std::endl;
 	system("pause");
