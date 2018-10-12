@@ -5,7 +5,7 @@
 int main()
 {
 	RBTree rbTree;
-	//²åÈë
+	//æ’å…¥
 	int n[]= { 12, 1, 9, 2, 0, 11, 7, 19, 4, 15, 18, 5, 14, 13, 10, 16, 6, 3, 8, 17 };
 	for (int i = 0; i < 20; i++)
 	{
@@ -13,30 +13,30 @@ int main()
 	}
 	rbTree.BFS();
 	std::cout << "------------------------------" << std::endl;
-	//É¾³ı
+	//åˆ é™¤
 	for (int i = 0; i <20; i++)
 	{
-		std::cout << "É¾³ı" << n[i] << "ºó" << std::endl;
+		std::cout << "åˆ é™¤" << n[i] << "å" << std::endl;
 		rbTree.DeleteElement(n[i]);
 		rbTree.BFS();
 	}
-	//²åÈëÈÎÒâĞòÁĞ
-	std::cout << "²åÈëÈÎÒâĞòÁĞ" << std::endl;
+	//æ’å…¥ä»»æ„åºåˆ—
+	std::cout << "æ’å…¥ä»»æ„åºåˆ—" << std::endl;
 	for (int i = 0; i < 100; i++)
 	{
 		rbTree.InsertData(i);
 	}
-	//²éÕÒ3
-	std::cout << "²éÕÒ3" << std::endl;
-	std::cout << "½á¹û:" << rbTree.FindElement(3) << std::endl;
+	//æŸ¥æ‰¾3
+	std::cout << "æŸ¥æ‰¾3" << std::endl;
+	std::cout << "ç»“æœ:" << rbTree.FindElement(3) << std::endl;
 	rbTree.BFS();
 	std::cout << "------------------------------" << std::endl;
-	//É¾³ıÈÎÒâĞòÁĞ,Ö»ÁôÈı¸ö
+	//åˆ é™¤ä»»æ„åºåˆ—,åªç•™ä¸‰ä¸ª
 	for (int i = 99; i >= 3; i--)
 	{
 		rbTree.DeleteElement(i);
 	}
-	//¹ã¶È±éÀú
+	//ï¿½ï¿½È±ï¿½ï¿½ï¿½
 	rbTree.BFS();
 	std::cout << "------------------------------" << std::endl;
 	system("pause");
