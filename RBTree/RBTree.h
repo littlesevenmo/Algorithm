@@ -3,19 +3,19 @@
 #include<queue>
 #include <assert.h>
 /*
-ºìºÚÊ÷ÊÇÒ»ÖÖ×ÔÆ½ºâµÄ¶ş²æ²éÕÒÊ÷£¬µäĞÍµÄÓÃÍ¾ÊÇÊµÏÖ¹ØÁªÊı×é¡£
-ºìºÚÊ÷ÓÉÒÔÏÂ5¸öÔ¼ÊøÌõ¼şÏŞÖÆ£º
-1. Ã¿¸ö½Úµã»òÕßÊÇºÚÉ«£¬»òÕßÊÇºìÉ«¡£
-2. ¸ù½ÚµãÊÇºÚÉ«¡£
-3. Ã¿¸öÒ¶×Ó½Úµã£¨NIL£©ÊÇºÚÉ«¡£ÕâÀïÒ¶×Ó½Úµã£¬ÊÇÖ¸Îª¿Õ(NIL»òNULL)µÄÒ¶×Ó½Úµã
-4. Èç¹ûÒ»¸ö½ÚµãÊÇºìÉ«µÄ£¬ÔòËüµÄ×Ó½Úµã±ØĞëÊÇºÚÉ«µÄ¡£
-5. ´ÓÒ»¸ö½Úµãµ½¸Ã½ÚµãµÄ×ÓËï½ÚµãµÄËùÓĞÂ·¾¶ÉÏ°üº¬ÏàÍ¬ÊıÄ¿µÄºÚ½Úµã¡£
+çº¢é»‘æ ‘æ˜¯ä¸€ç§è‡ªå¹³è¡¡çš„äºŒå‰æŸ¥æ‰¾æ ‘ï¼Œå…¸å‹çš„ç”¨é€”æ˜¯å®ç°å…³è”æ•°ç»„ã€‚
+çº¢é»‘æ ‘ç”±ä»¥ä¸‹5ä¸ªçº¦æŸæ¡ä»¶é™åˆ¶ï¼š
+1. æ¯ä¸ªèŠ‚ç‚¹æˆ–è€…æ˜¯é»‘è‰²ï¼Œæˆ–è€…æ˜¯çº¢è‰²ã€‚
+2. æ ¹èŠ‚ç‚¹æ˜¯é»‘è‰²ã€‚
+3. æ¯ä¸ªå¶å­èŠ‚ç‚¹ï¼ˆç©ºèŠ‚ç‚¹ï¼‰æ˜¯é»‘è‰²ã€‚ä¸ºäº†æ–¹ä¾¿è¡¨ç¤ºå¶å­èŠ‚ç‚¹ï¼Œè®¾ç½®å“¨å…µèŠ‚ç‚¹ï¼ˆNilï¼‰è¡¨ç¤ºç©ºèŠ‚ç‚¹ï¼Œæ¯ä¸ªå¶å­èŠ‚ç‚¹å…¨éƒ½æŒ‡å‘å®ƒï¼Œæ–¹ä¾¿è¡¨ç¤ºã€‚
+4. å¦‚æœä¸€ä¸ªèŠ‚ç‚¹æ˜¯çº¢è‰²çš„ï¼Œåˆ™å®ƒçš„å­èŠ‚ç‚¹å¿…é¡»æ˜¯é»‘è‰²çš„ã€‚
+5. ä»ä¸€ä¸ªèŠ‚ç‚¹åˆ°è¯¥èŠ‚ç‚¹çš„å­å­™èŠ‚ç‚¹çš„æ‰€æœ‰è·¯å¾„ä¸ŠåŒ…å«ç›¸åŒæ•°ç›®çš„é»‘èŠ‚ç‚¹ã€‚
 
-ÓÉÔ¼ÊøÌõ¼ş5£¬¿ÉµÃ£º´Ó¸ùµ½ËùÓĞÒ¬×ÓµÄ×î³¤µÄÂ·¾¶²»¶àÓÚ×î¶ÌµÄÂ·¾¶µÄ2±¶³¤£¬Òò´ËÕâ¿ÃÊ÷´óÖÂÉÏÊÇÆ½ºâµÄ¡£
+ç”±çº¦æŸæ¡ä»¶5ï¼Œå¯å¾—ï¼šä»æ ¹åˆ°æ‰€æœ‰æ¤°å­çš„æœ€é•¿çš„è·¯å¾„ä¸å¤šäºæœ€çŸ­çš„è·¯å¾„çš„2å€é•¿ï¼Œå› æ­¤è¿™æ£µæ ‘å¤§è‡´ä¸Šæ˜¯å¹³è¡¡çš„ã€‚
 */
 
 /*
-Õâ¸öclassÀï£¬¶ÔÓÚÁ½¸ö±äÁ¿µÄ±È½ÏµÄÓï¾ä£¬ÎÒ°Ñ³£Á¿ÖµÈ«¶¼·ÅÔÚÁË×ó±ß£¬·ÀÖ¹ÉÙĞ´Ò»¸öµÈºÅµÄÇé¿ö¡£
+è¿™ä¸ªclassé‡Œï¼Œå¯¹äºä¸¤ä¸ªå˜é‡çš„æ¯”è¾ƒçš„è¯­å¥ï¼Œæˆ‘æŠŠå¸¸é‡å€¼å…¨éƒ½æ”¾åœ¨äº†å·¦è¾¹ï¼Œé˜²æ­¢å°‘å†™ä¸€ä¸ªç­‰å·çš„æƒ…å†µã€‚
 */
 class RBTree
 {
@@ -34,101 +34,101 @@ private:
 		int Value;
 	}RBTreeNode, *pRBTreeNode;
 private:
-	void InsertFixUP(pRBTreeNode pInsertNode);						//²åÈëInsertNodeÖ®ºó£¬µ÷ÕûºìºÚÊ÷
-	void DeleteFixUp(pRBTreeNode pFixNode);						//É¾³ıDeleteNodeÖ®ºó£¬µ÷ÕûºìºÚÊ÷
-	void SingleLeft(pRBTreeNode &pNode, pRBTreeNode &newTop);		//×óĞı×ª£¬·µ»ØĞÂµÄ¶¥µã
-	void SingleRight(pRBTreeNode &pNode, pRBTreeNode &newTop);		//ÓÒĞı×ª£¬·µ»ØĞÂµÄ¶¥µã
-	void ReplaceParent(pRBTreeNode pBeReplacedNode, pRBTreeNode pReplaceNode);	//°ÑpReplaceNodeµÄ¸¸½ÚµãĞŞ¸ÄÎªpBeReplacedNodeµÄ
-	bool GetMinNode(pRBTreeNode pNode, pRBTreeNode &pMinNode);					//»ñÈ¡×îĞ¡µÄ½Úµã
+	void InsertFixUP(pRBTreeNode pInsertNode);						//æ’å…¥InsertNodeä¹‹åï¼Œè°ƒæ•´çº¢é»‘æ ‘
+	void DeleteFixUp(pRBTreeNode pFixNode);						//åˆ é™¤DeleteNodeä¹‹åï¼Œè°ƒæ•´çº¢é»‘æ ‘
+	void SingleLeft(pRBTreeNode &pNode, pRBTreeNode &newTop);		//å·¦æ—‹è½¬ï¼Œè¿”å›æ–°çš„é¡¶ç‚¹
+	void SingleRight(pRBTreeNode &pNode, pRBTreeNode &newTop);		//å³æ—‹è½¬ï¼Œè¿”å›æ–°çš„é¡¶ç‚¹
+	void ReplaceParent(pRBTreeNode pBeReplacedNode, pRBTreeNode pReplaceNode);	//æŠŠpReplaceNodeçš„çˆ¶èŠ‚ç‚¹ä¿®æ”¹ä¸ºpBeReplacedNodeçš„
+	bool GetMinNode(pRBTreeNode pNode, pRBTreeNode &pMinNode);					//è·å–æœ€å°çš„èŠ‚ç‚¹
 public:
 	RBTree();
 	~RBTree();
-	bool FindElement(int Value);									//²éÕÒÊı¾İ£¬ÕÒµ½·µ»Øtrue£¬·ñÔò·µ»Øfalse
-	void BFS();														//¹ã¶È±éÀú
-	bool isEmpty();													//ÅĞ¿Õ
-	bool GetMax(pRBTreeNode pNode, int &MaxValue);					//»ñÈ¡×î´óÖµ
-	bool GetMin(pRBTreeNode pNode, int &MinValue);					//»ñÈ¡×îĞ¡Öµ
-	void DeleteElement(int DeleteValue);							//É¾³ıÖÆ¶¨µÄÔªËØ
-	void InsertData(int InsertValue);								//²åÈë
+	bool FindElement(int Value);									//æŸ¥æ‰¾æ•°æ®ï¼Œæ‰¾åˆ°è¿”å›trueï¼Œå¦åˆ™è¿”å›false
+	void BFS();														//å¹¿åº¦éå†
+	bool isEmpty();													//åˆ¤ç©º
+	bool GetMax(pRBTreeNode pNode, int &MaxValue);					//è·å–æœ€å¤§å€¼
+	bool GetMin(pRBTreeNode pNode, int &MinValue);					//è·å–æœ€å°å€¼
+	void DeleteElement(int DeleteValue);							//åˆ é™¤åˆ¶å®šçš„å…ƒç´ 
+	void InsertData(int InsertValue);								//æ’å…¥å…ƒç´ 
 private:
-	pRBTreeNode pRoot;												//¸ù½ÚµãÖ¸Õë
-	pRBTreeNode pNil;												//¿Õ½Úµã
+	pRBTreeNode pRoot;												//æ ¹èŠ‚ç‚¹æŒ‡é’ˆ
+	pRBTreeNode pNil;												//å“¨å…µèŠ‚ç‚¹
 };
 
 void RBTree::InsertFixUP(pRBTreeNode pInsertNode)
 {
 	/*
-	²åÈë½Úµãºó£¬¶ÔºìºÚÊ÷µÄµ÷Õû²Ù×÷£º
-	¸ù¾İ±»²åÈë½ÚµãµÄ¸¸½ÚµãµÄÇé¿ö£¬¿ÉÒÔ½«Çé¿ö·ÖÈıÀàÀ´ÌÖÂÛ
-	1. ±»²åÈëµÄ½ÚµãµÄ¸¸½ÚµãÊÇºìÉ«
-	Õâ¸öÊ±ºò»á²úÉú³åÍ»£¬²»Âú×ãÔ¼ÊøÌõ¼ş5¡£
-	ÕâÖÖÇé¿öÏÂ£¬±»²åÈë½ÚµãÊÇÒ»¶¨´æÔÚ·Ç¿Õ×æ¸¸½ÚµãµÄ£»½øÒ»²½µÄ½²£¬±»²åÈë½ÚµãÒ²Ò»¶¨´æÔÚÊåÊå½Úµã(¼´Ê¹ÊåÊå½ÚµãÎª¿Õ£¬ÎÒÃÇÒ²ÊÓÖ®Îª´æÔÚ£¬¿Õ½Úµã±¾Éí¾ÍÊÇºÚÉ«½Úµã)¡£
-	ÒÀ¾İ"ÊåÊå½ÚµãµÄÇé¿ö"£¬½«ÕâÖÖÇé¿ö½øÒ»²½»®·ÖÎª3ÖÖÇé¿ö½øĞĞÌÖÂÛ¡£´¦ÀíµÄºËĞÄË¼Â·ÊÇ£º½«ºìÉ«µÄ½ÚµãÒÆµ½¸ù½Úµã£¬È»ºó½«¸ù½ÚµãÉèÖÃÎªºÚÉ«¡£
+	æ’å…¥èŠ‚ç‚¹åï¼Œå¯¹çº¢é»‘æ ‘çš„è°ƒæ•´æ“ä½œï¼š
+	æ ¹æ®è¢«æ’å…¥èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹çš„æƒ…å†µï¼Œå¯ä»¥å°†æƒ…å†µåˆ†ä¸‰ç±»æ¥è®¨è®º
+	1. è¢«æ’å…¥çš„èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯çº¢è‰²
+	è¿™ä¸ªæ—¶å€™ä¼šäº§ç”Ÿå†²çªï¼Œä¸æ»¡è¶³çº¦æŸæ¡ä»¶5ã€‚
+	è¿™ç§æƒ…å†µä¸‹ï¼Œè¢«æ’å…¥èŠ‚ç‚¹æ˜¯ä¸€å®šå­˜åœ¨éç©ºç¥–çˆ¶èŠ‚ç‚¹çš„ï¼›è¿›ä¸€æ­¥çš„è®²ï¼Œè¢«æ’å…¥èŠ‚ç‚¹ä¹Ÿä¸€å®šå­˜åœ¨å”å”èŠ‚ç‚¹(å³ä½¿å”å”èŠ‚ç‚¹ä¸ºç©ºï¼Œæˆ‘ä»¬ä¹Ÿè§†ä¹‹ä¸ºå­˜åœ¨ï¼Œç©ºèŠ‚ç‚¹æœ¬èº«å°±æ˜¯é»‘è‰²èŠ‚ç‚¹)ã€‚
+	ä¾æ®"å”å”èŠ‚ç‚¹çš„æƒ…å†µ"ï¼Œå°†è¿™ç§æƒ…å†µè¿›ä¸€æ­¥åˆ’åˆ†ä¸º3ç§æƒ…å†µè¿›è¡Œè®¨è®ºã€‚å¤„ç†çš„æ ¸å¿ƒæ€è·¯æ˜¯ï¼šå°†çº¢è‰²çš„èŠ‚ç‚¹ç§»åˆ°æ ¹èŠ‚ç‚¹ï¼Œç„¶åå°†æ ¹èŠ‚ç‚¹è®¾ç½®ä¸ºé»‘è‰²ã€‚
 
-	**ÒÔµ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇ×æ¸¸½ÚµãµÄ×óº¢×ÓÎªÀı**
-	**¶ÔÓ¦µÄ£¬Èôµ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇ×æ¸¸½ÚµãµÄÓÒº¢×ÓÊ±£¬°Ñ¶ÔÓ¦µÄrightºÍleft»¥»»¼´¿É**
+	**ä»¥å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯ç¥–çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­ä¸ºä¾‹**
+	**å¯¹åº”çš„ï¼Œè‹¥å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯ç¥–çˆ¶èŠ‚ç‚¹çš„å³å­©å­æ—¶ï¼ŒæŠŠå¯¹åº”çš„rightå’Œleftäº’æ¢å³å¯**
 
-	1.1 µ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇºìÉ«£¬ÇÒµ±Ç°½ÚµãµÄ×æ¸¸½ÚµãµÄÁíÒ»¸ö×Ó½Úµã£¨ÊåÊå½Úµã£©Ò²ÊÇºìÉ«¡£
-	1. ½«¡°¸¸½Úµã¡±ÉèÎªºÚÉ«¡£
-	2. ½«¡°ÊåÊå½Úµã¡±ÉèÎªºÚÉ«¡£
-	3. ½«¡°×æ¸¸½Úµã¡±ÉèÎª¡°ºìÉ«¡±¡£
-	4. ½«¡°×æ¸¸½Úµã¡±ÉèÎª¡°µ±Ç°½Úµã¡±(ºìÉ«½Úµã)£»¼´£¬Ö®ºó¼ÌĞø¶Ô¡°µ±Ç°½Úµã¡±½øĞĞ²Ù×÷¡£
-	1.2 µ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇºìÉ«£¬ÊåÊå½ÚµãÊÇºÚÉ«£¬ÇÒµ±Ç°½ÚµãÊÇÆä¸¸½ÚµãµÄÓÒº¢×Ó¡£
-	1. ½«¡°¸¸½Úµã¡±×÷Îª¡°ĞÂµÄµ±Ç°½Úµã¡±¡£
-	2. ÒÔ¡°ĞÂµÄµ±Ç°½Úµã¡±ÎªÖ§µã½øĞĞ×óĞı¡£
-	1.3 µ±Ç°½ÚµãµÄ¸¸½ÚµãÊÇºìÉ«£¬ÊåÊå½ÚµãÊÇºÚÉ«£¬ÇÒµ±Ç°½ÚµãÊÇÆä¸¸½ÚµãµÄ×óº¢×Ó¡£
-	1. ½«¡°¸¸½Úµã¡±ÉèÎª¡°ºÚÉ«¡±¡£
-	2. ½«¡°×æ¸¸½Úµã¡±ÉèÎª¡°ºìÉ«¡±¡£
-	3. ÒÔ¡°×æ¸¸½Úµã¡±ÎªÖ§µã½øĞĞÓÒĞı¡£
+	1.1 å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯çº¢è‰²ï¼Œä¸”å½“å‰èŠ‚ç‚¹çš„ç¥–çˆ¶èŠ‚ç‚¹çš„å¦ä¸€ä¸ªå­èŠ‚ç‚¹ï¼ˆå”å”èŠ‚ç‚¹ï¼‰ä¹Ÿæ˜¯çº¢è‰²ã€‚
+	1. å°†â€œçˆ¶èŠ‚ç‚¹â€è®¾ä¸ºé»‘è‰²ã€‚
+	2. å°†â€œå”å”èŠ‚ç‚¹â€è®¾ä¸ºé»‘è‰²ã€‚
+	3. å°†â€œç¥–çˆ¶èŠ‚ç‚¹â€è®¾ä¸ºâ€œçº¢è‰²â€ã€‚
+	4. å°†â€œç¥–çˆ¶èŠ‚ç‚¹â€è®¾ä¸ºâ€œå½“å‰èŠ‚ç‚¹â€(çº¢è‰²èŠ‚ç‚¹)ï¼›å³ï¼Œä¹‹åç»§ç»­å¯¹â€œå½“å‰èŠ‚ç‚¹â€è¿›è¡Œæ“ä½œã€‚
+	1.2 å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯çº¢è‰²ï¼Œå”å”èŠ‚ç‚¹æ˜¯é»‘è‰²ï¼Œä¸”å½“å‰èŠ‚ç‚¹æ˜¯å…¶çˆ¶èŠ‚ç‚¹çš„å³å­©å­ã€‚
+	1. å°†â€œçˆ¶èŠ‚ç‚¹â€ä½œä¸ºâ€œæ–°çš„å½“å‰èŠ‚ç‚¹â€ã€‚
+	2. ä»¥â€œæ–°çš„å½“å‰èŠ‚ç‚¹â€ä¸ºæ”¯ç‚¹è¿›è¡Œå·¦æ—‹ã€‚
+	1.3 å½“å‰èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯çº¢è‰²ï¼Œå”å”èŠ‚ç‚¹æ˜¯é»‘è‰²ï¼Œä¸”å½“å‰èŠ‚ç‚¹æ˜¯å…¶çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­ã€‚
+	1. å°†â€œçˆ¶èŠ‚ç‚¹â€è®¾ä¸ºâ€œé»‘è‰²â€ã€‚
+	2. å°†â€œç¥–çˆ¶èŠ‚ç‚¹â€è®¾ä¸ºâ€œçº¢è‰²â€ã€‚
+	3. ä»¥â€œç¥–çˆ¶èŠ‚ç‚¹â€ä¸ºæ”¯ç‚¹è¿›è¡Œå³æ—‹ã€‚
 
 
-	2. ±»²åÈëµÄ½ÚµãµÄ¸¸½ÚµãÊÇºÚÉ«
-	Ê²Ã´Ò²²»ĞèÒª×ö¡£½Úµã±»²åÈëºó£¬ÈÔÈ»ÊÇºìºÚÊ÷¡£
-	3. ±»²åÈëµÄ½ÚµãÊÇ¸ù½Úµã£º
-	Ö±½Ó°Ñ´Ë½ÚµãÍ¿ÎªºÚÉ«¡£
+	2. è¢«æ’å…¥çš„èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯é»‘è‰²
+	ä»€ä¹ˆä¹Ÿä¸éœ€è¦åšã€‚èŠ‚ç‚¹è¢«æ’å…¥åï¼Œä»ç„¶æ˜¯çº¢é»‘æ ‘ã€‚
+	3. è¢«æ’å…¥çš„èŠ‚ç‚¹æ˜¯æ ¹èŠ‚ç‚¹ï¼š
+	ç›´æ¥æŠŠæ­¤èŠ‚ç‚¹æ¶‚ä¸ºé»‘è‰²ã€‚
 	*/
 
 	pRBTreeNode pFixNode = pInsertNode;;
-	//Èç¹û¸¸½ÚµãÊÇºìÉ«¡££¨¸ù½ÚµãµÄ¸¸½ÚµãÊÇNil£¬ÎªºÚÉ«¡££©
+	//å¦‚æœçˆ¶èŠ‚ç‚¹æ˜¯çº¢è‰²ã€‚ï¼ˆæ ¹èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æ˜¯Nilï¼Œä¸ºé»‘è‰²ã€‚ï¼‰
 	while (RBT_COLOR_RED == pFixNode->pParent->Color)
 	{
-		//1. Èç¹ûµ÷Õû½ÚµãµÄ¸¸Ç×Îª×æ¸¸½ÚµãµÄ×óº¢×Ó
+		//1. å¦‚æœè°ƒæ•´èŠ‚ç‚¹çš„çˆ¶äº²ä¸ºç¥–çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­
 		if (pFixNode->pParent == pFixNode->pParent->pParent->pLeft)
 		{
-			//»ñÈ¡ÊåÊå½Úµã(×æ¸¸½ÚµãµÄÓÒº¢×Ó)
+			//è·å–å”å”èŠ‚ç‚¹(ç¥–çˆ¶èŠ‚ç‚¹çš„å³å­©å­)
 			pRBTreeNode pUncle = pFixNode->pParent->pParent->pRight;
-			//1.1 Èç¹ûÊåÊå½ÚµãÎªºìÉ«£¬Çé¿ö1.1.1
+			//1.1 å¦‚æœå”å”èŠ‚ç‚¹ä¸ºçº¢è‰²ï¼Œæƒ…å†µ1.1.1
 			if (RBT_COLOR_RED == pUncle->Color)
 			{
-				//°Ñ¸¸½ÚµãºÍÊåÊå½Úµã¶¼¸ÄÎªºÚÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹éƒ½æ”¹ä¸ºé»‘è‰²
 				pFixNode->pParent->Color = RBT_COLOR_BLACK;
 				pUncle->Color = RBT_COLOR_BLACK;
-				//°Ñ×æ¸¸½Úµã¸ÄÎªºìÉ«
+				//æŠŠç¥–çˆ¶èŠ‚ç‚¹æ”¹ä¸ºçº¢è‰²
 				pFixNode->pParent->pParent->Color = RBT_COLOR_RED;
-				//ÖØĞÂ¼ÆËãµ÷Õû½ÚµãÎª×æ¸¸½Úµã
+				//é‡æ–°è®¡ç®—è°ƒæ•´èŠ‚ç‚¹ä¸ºç¥–çˆ¶èŠ‚ç‚¹
 				pFixNode = pFixNode->pParent->pParent;
 			}
-			//1.2 ÊåÊå½Úµã²»ÎªºìÉ«£¬ÇÒµ÷Õû½ÚµãÎª×æ¸¸½ÚµãµÄÓÒº¢×Ó¡£Õâ¸öÊ±ºò£¬ÉÔ¼Ó´¦Àí±ä»á×ª»¯ÎªÇé¿ö1.3
+			//1.2 å”å”èŠ‚ç‚¹ä¸ä¸ºçº¢è‰²ï¼Œä¸”è°ƒæ•´èŠ‚ç‚¹ä¸ºç¥–çˆ¶èŠ‚ç‚¹çš„å³å­©å­ã€‚è¿™ä¸ªæ—¶å€™ï¼Œç¨åŠ å¤„ç†å˜ä¼šè½¬åŒ–ä¸ºæƒ…å†µ1.3
 			else if (pFixNode == pFixNode->pParent->pRight)
 			{
-				//´Óµ÷Õû½ÚµãµÄ¸¸½Úµã¿ªÊ¼Ğı×ª
+				//ä»è°ƒæ•´èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹å¼€å§‹æ—‹è½¬
 				pFixNode = pFixNode->pParent;
-				//¼ÇÂ¼ÏÂĞÂµÄ¶¥µã
+				//è®°å½•ä¸‹æ–°çš„é¡¶ç‚¹
 				pRBTreeNode pNewTop = nullptr;
 				SingleLeft(pFixNode->pParent->pLeft, pNewTop);
-				//ÖØĞÂÉèÖÃµ÷Õû½Úµã
+				//é‡æ–°è®¾ç½®è°ƒæ•´èŠ‚ç‚¹
 				pFixNode = pNewTop->pLeft;
 			}
-			//1.3 ÊåÊå½ÚµãÎªºÚ£¬ÇÒµ÷Õû½ÚµãÎª¸¸½ÚµãµÄ×óº¢×Ó
+			//1.3 å”å”èŠ‚ç‚¹ä¸ºé»‘ï¼Œä¸”è°ƒæ•´èŠ‚ç‚¹ä¸ºçˆ¶èŠ‚ç‚¹çš„å·¦å­©å­
 			else if (pFixNode == pFixNode->pParent->pLeft)
 			{
-				//°Ñ¸¸½Úµã±ä³ÉºÚÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹å˜æˆé»‘è‰²
 				pFixNode->pParent->Color = RBT_COLOR_BLACK;
-				//°Ñ×æ¸¸½Úµã±ä³ÉºìÉ«
+				//æŠŠç¥–çˆ¶èŠ‚ç‚¹å˜æˆçº¢è‰²
 				pFixNode->pParent->pParent->Color = RBT_COLOR_RED;
-				//ÒÔ×æ¸¸½ÚµãÓÒĞı×ª(×¢Òâµ½Îª¸ù½ÚµãµÄÇé¿ö)
+				//ä»¥ç¥–çˆ¶èŠ‚ç‚¹å³æ—‹è½¬(æ³¨æ„åˆ°ä¸ºæ ¹èŠ‚ç‚¹çš„æƒ…å†µ)
 				pFixNode = pFixNode->pParent->pParent;
-				//¼ÇÂ¼ÏÂĞÂµÄ¶¥µã
+				//è®°å½•ä¸‹æ–°çš„é¡¶ç‚¹
 				pRBTreeNode pNewTop = nullptr;
 				if (pRoot == pFixNode)
 				{
@@ -142,47 +142,47 @@ void RBTree::InsertFixUP(pRBTreeNode pInsertNode)
 				{
 					SingleRight(pFixNode->pParent->pRight, pNewTop);
 				}
-				//ÖØĞÂÉèÖÃµ÷Õûµã
+				//é‡æ–°è®¾ç½®è°ƒæ•´ç‚¹
 				pFixNode = pNewTop->pLeft;
 			}
 		}
-		//2. Èç¹ûµ÷Õû½ÚµãµÄ¸¸½ÚµãÎª×æ¸¸½ÚµãµÄÓÒº¢×Ó£¬Ïà¶ÔÓÚ1ÖĞ£¬°ÑleftºÍright»¥»»¼´¿É
+		//2. å¦‚æœè°ƒæ•´èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹ä¸ºç¥–çˆ¶èŠ‚ç‚¹çš„å³å­©å­ï¼Œç›¸å¯¹äº1ä¸­ï¼ŒæŠŠleftå’Œrightäº’æ¢å³å¯
 		else if (pFixNode->pParent == pFixNode->pParent->pParent->pRight)
 		{
-			//»ñÈ¡ÊåÊå½Úµã£¨×æ¸¸½ÚµãµÄ×óº¢×Ó£©
+			//è·å–å”å”èŠ‚ç‚¹ï¼ˆç¥–çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­ï¼‰
 			pRBTreeNode pUncle = pFixNode->pParent->pParent->pLeft;
-			//2.1 Èç¹ûÊåÊå½ÚµãÎªºìÉ«
+			//2.1 å¦‚æœå”å”èŠ‚ç‚¹ä¸ºçº¢è‰²
 			if (RBT_COLOR_RED == pUncle->Color)
 			{
-				//°Ñ¸¸½ÚµãºÍÊåÊå½Úµã¶¼¸ÄÎªºÚÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹å’Œå”å”èŠ‚ç‚¹éƒ½æ”¹ä¸ºé»‘è‰²
 				pFixNode->pParent->Color = RBT_COLOR_BLACK;
 				pUncle->Color = RBT_COLOR_BLACK;
-				//°Ñ×æ¸¸½Úµã¸ÄÎªºìÉ«
+				//æŠŠç¥–çˆ¶èŠ‚ç‚¹æ”¹ä¸ºçº¢è‰²
 				pFixNode->pParent->pParent->Color = RBT_COLOR_RED;
-				//ÖØĞÂ¼ÆËãµ÷Õû½ÚµãÎª×æ¸¸½Úµã
+				//é‡æ–°è®¡ç®—è°ƒæ•´èŠ‚ç‚¹ä¸ºç¥–çˆ¶èŠ‚ç‚¹
 				pFixNode = pFixNode->pParent->pParent;
 			}
-			//2.2 ÊåÊå½ÚµãÎªºÚÉ«£¬ÇÒµ÷Õû½ÚµãÎª¸¸Ç×½ÚµãµÄ×óº¢×Ó£¬¶ÔÓ¦Çé¿ö1.2£¨×óÓÒ»¥»»£©
+			//2.2 å”å”èŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œä¸”è°ƒæ•´èŠ‚ç‚¹ä¸ºçˆ¶äº²èŠ‚ç‚¹çš„å·¦å­©å­ï¼Œå¯¹åº”æƒ…å†µ1.2ï¼ˆå·¦å³äº’æ¢ï¼‰
 			else if (pFixNode == pFixNode->pParent->pLeft)
 			{
-				//´Óµ÷Õû½ÚµãµÄ¸¸½Úµã¿ªÊ¼Ğı×ª
+				//ä»è°ƒæ•´èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹å¼€å§‹æ—‹è½¬
 				pFixNode = pFixNode->pParent;
-				//¼ÇÂ¼ÏÂĞÂµÄ¶¥µã
+				//è®°å½•ä¸‹æ–°çš„é¡¶ç‚¹
 				pRBTreeNode pNewTop = nullptr;
 				SingleRight(pFixNode->pParent->pRight, pNewTop);
-				//ÖØĞÂÉèÖÃµ÷Õû½Úµã
+				//é‡æ–°è®¾ç½®è°ƒæ•´èŠ‚ç‚¹
 				pFixNode = pNewTop->pRight;
 			}
-			//2.3 ÊåÊå½ÚµãÎªºÚÉ«£¬ÇÒµ÷Õû½ÚµãÎª¸¸½ÚµãµÄÓÒº¢×Ó£¬¶ÔÓ¦Çé¿ö1.3£¨×óÓÒ»¥»»£©
+			//2.3 å”å”èŠ‚ç‚¹ä¸ºé»‘è‰²ï¼Œä¸”è°ƒæ•´èŠ‚ç‚¹ä¸ºçˆ¶èŠ‚ç‚¹çš„å³å­©å­ï¼Œå¯¹åº”æƒ…å†µ1.3ï¼ˆå·¦å³äº’æ¢ï¼‰
 			else if (pFixNode == pFixNode->pParent->pRight)
 			{
-				//°Ñ¸¸½Úµã±äÎªºÚÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹å˜ä¸ºé»‘è‰²
 				pFixNode->pParent->Color = RBT_COLOR_BLACK;
-				//°Ñ×æ¸¸½Úµã±äÎªºìÉ«
+				//æŠŠç¥–çˆ¶èŠ‚ç‚¹å˜ä¸ºçº¢è‰²
 				pFixNode->pParent->pParent->Color = RBT_COLOR_RED;
-				//¶Ô×æ¸¸½Úµã½øĞĞ×óĞı×ª£¨×¢Òâµ½Îª¸ù½ÚµãµÄÇé¿ö£©
+				//å¯¹ç¥–çˆ¶èŠ‚ç‚¹è¿›è¡Œå·¦æ—‹è½¬ï¼ˆæ³¨æ„åˆ°ä¸ºæ ¹èŠ‚ç‚¹çš„æƒ…å†µï¼‰
 				pFixNode = pFixNode->pParent->pParent;
-				//¼ÇÂ¼ÏÂĞÂ½Úµã
+				//è®°å½•ä¸‹æ–°èŠ‚ç‚¹
 				pRBTreeNode pNewTop = nullptr;
 				if (pRoot == pFixNode)
 				{
@@ -196,37 +196,37 @@ void RBTree::InsertFixUP(pRBTreeNode pInsertNode)
 				{
 					SingleLeft(pFixNode->pParent->pRight, pNewTop);
 				}
-				//ÖØĞÂÉèÖÃµ÷Õû½Úµã
+				//é‡æ–°è®¾ç½®è°ƒæ•´èŠ‚ç‚¹
 				pFixNode = pNewTop->pRight;
 			}
 		}
 	}
-	//×îºó°Ñ¸ù½ÚµãÉèÖÃÎªºÚÉ«
+	//æœ€åæŠŠæ ¹èŠ‚ç‚¹è®¾ç½®ä¸ºé»‘è‰²
 	pRoot->Color = RBT_COLOR_BLACK;
 }
 
 void RBTree::DeleteFixUp(pRBTreeNode pFixNode)
 {
 	/*
-	»Ö¸´ºìºÚÊ÷µÄÔ¼ÊøÌõ¼ş¡£
+	æ¢å¤çº¢é»‘æ ‘çš„çº¦æŸæ¡ä»¶ã€‚
 	*/
 	while (pFixNode != pRoot&&RBT_COLOR_BLACK == pFixNode->Color)
 	{
-		//1. Èç¹ûµ÷ÕûµãÊÇ¸¸½ÚµãµÄ×óº¢×Ó
+		//1. å¦‚æœè°ƒæ•´ç‚¹æ˜¯çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­
 		if (pFixNode == pFixNode->pParent->pLeft)
 		{
-			pRBTreeNode pBrotherNode = pFixNode->pParent->pRight;			//ĞÖµÜ½Úµã
-																			//1.1 Èç¹ûĞÖµÜ½ÚµãÎªºìÉ«£¬ÔòÖ»ÄÜµ÷Õû³ÉÆäËûµÄÇé¿ö
+			pRBTreeNode pBrotherNode = pFixNode->pParent->pRight;			//å…„å¼ŸèŠ‚ç‚¹
+																			//1.1 å¦‚æœå…„å¼ŸèŠ‚ç‚¹ä¸ºçº¢è‰²ï¼Œåˆ™åªèƒ½è°ƒæ•´æˆå…¶ä»–çš„æƒ…å†µ
 			if (RBT_COLOR_RED == pBrotherNode->Color)
 			{
-				//°ÑĞÖµÜ½ÚµãµÄÑÕÉ«¸ÄÎªºÚÉ«
+				//æŠŠå…„å¼ŸèŠ‚ç‚¹çš„é¢œè‰²æ”¹ä¸ºé»‘è‰²
 				pBrotherNode->Color = RBT_COLOR_BLACK;
-				//°Ñ¸¸½ÚµãµÄÑÕÉ«¸ÄÎªºìÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹çš„é¢œè‰²æ”¹ä¸ºçº¢è‰²
 				pFixNode->pParent->Color = RBT_COLOR_RED;
-				//ÒÔ¸¸½ÚµãÎª¸ù½Úµã×óĞı
+				//ä»¥çˆ¶èŠ‚ç‚¹ä¸ºæ ¹èŠ‚ç‚¹å·¦æ—‹
 				pRBTreeNode pPivot = pFixNode->pParent;
 				pRBTreeNode pNewTop = nullptr;
-				//±¸·İparentµÄÖ¸Õë£¬ÒòÎªĞı×ª²Ù×÷»áĞŞ¸ÄparentÖ¸Õë
+				//å¤‡ä»½parentçš„æŒ‡é’ˆï¼Œå› ä¸ºæ—‹è½¬æ“ä½œä¼šä¿®æ”¹parentæŒ‡é’ˆ
 				pRBTreeNode pBackParent = pFixNode->pParent;
 				if (pRoot = pPivot)
 				{
@@ -240,39 +240,39 @@ void RBTree::DeleteFixUp(pRBTreeNode pFixNode)
 				{
 					SingleLeft(pPivot->pParent->pRight, pNewTop);
 				}
-				//»Ö¸´pFixNodeµÄparentÖ¸Õë
+				//æ¢å¤pFixNodeçš„parentæŒ‡é’ˆ
 				pFixNode->pParent = pBackParent;
 			}
-			//1.2 Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«ÇÒĞÖµÜ½ÚµãµÄ×óÓÒº¢×Ó¾ùÎªºÚÉ«
+			//1.2 å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²ä¸”å…„å¼ŸèŠ‚ç‚¹çš„å·¦å³å­©å­å‡ä¸ºé»‘è‰²
 			else if (RBT_COLOR_BLACK == pBrotherNode->pLeft->Color&&RBT_COLOR_BLACK == pBrotherNode->pRight->Color)
 			{
-				//°ÑĞÖµÜ½ÚµãÈ¾³ÉºìÉ«
+				//æŠŠå…„å¼ŸèŠ‚ç‚¹æŸ“æˆçº¢è‰²
 				pBrotherNode->Color = RBT_COLOR_RED;
-				//FixUpNodeĞŞ¸ÄÎª¸¸Ç×½Úµã
+				//FixUpNodeä¿®æ”¹ä¸ºçˆ¶äº²èŠ‚ç‚¹
 				pFixNode = pFixNode->pParent;
 			}
-			//1.3 Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«²¢ÇÒĞÖµÜ½Úµã×óº¢×ÓÎªºìÉ«£¬ÓÒº¢×ÓÎªºÚÉ«
+			//1.3 å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²å¹¶ä¸”å…„å¼ŸèŠ‚ç‚¹å·¦å­©å­ä¸ºçº¢è‰²ï¼Œå³å­©å­ä¸ºé»‘è‰²
 			else if (RBT_COLOR_RED == pBrotherNode->pLeft->Color&&RBT_COLOR_BLACK == pBrotherNode->pRight->Color)
 			{
-				//½»»»ÑÕÉ«
+				//äº¤æ¢é¢œè‰²
 				RBTColor tempNodeColor = pBrotherNode->pLeft->Color;
 				pBrotherNode->pLeft->Color = pBrotherNode->Color;
 				pBrotherNode->Color = tempNodeColor;
-				//±¸·İparentµÄÖ¸Õë£¬ÒòÎªĞı×ª²Ù×÷»áĞŞ¸ÄparentÖ¸Õë
+				//å¤‡ä»½parentçš„æŒ‡é’ˆï¼Œå› ä¸ºæ—‹è½¬æ“ä½œä¼šä¿®æ”¹parentæŒ‡é’ˆ
 				pRBTreeNode pBackParent = pFixNode->pParent;
-				//ÒÔpBrotherNode½øĞĞÓÒĞı
+				//ä»¥pBrotherNodeè¿›è¡Œå³æ—‹
 				pRBTreeNode pNewTop = nullptr;
 				SingleRight(pBrotherNode->pParent->pRight, pNewTop);
-				//»Ö¸´pFixNodeµÄparentÖ¸Õë
+				//æ¢å¤pFixNodeçš„parentæŒ‡é’ˆ
 				pFixNode->pParent = pBackParent;
 			}
-			//1.4 Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«£¬ÇÒĞÖµÜ½ÚµãµÄÓÒº¢×ÓÎªºìÉ«£¬ĞÖµÜ½ÚµãµÄ×óº¢×Ó¿ÉÒÔÊÇÈÎÒâÑÕÉ«
+			//1.4 å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²ï¼Œä¸”å…„å¼ŸèŠ‚ç‚¹çš„å³å­©å­ä¸ºçº¢è‰²ï¼Œå…„å¼ŸèŠ‚ç‚¹çš„å·¦å­©å­å¯ä»¥æ˜¯ä»»æ„é¢œè‰²
 			else if (RBT_COLOR_RED == pBrotherNode->pRight->Color)
 			{
 				pBrotherNode->Color = pFixNode->pParent->Color;
 				pFixNode->pParent->Color = RBT_COLOR_BLACK;
 				pBrotherNode->pRight->Color = RBT_COLOR_BLACK;
-				//ÒÔpFixNode->pParent×óĞı
+				//ä»¥pFixNode->pParentå·¦æ—‹
 				pRBTreeNode pPivot = pFixNode->pParent;
 				pRBTreeNode pNewTop = nullptr;
 				if (pRoot == pPivot)
@@ -290,21 +290,21 @@ void RBTree::DeleteFixUp(pRBTreeNode pFixNode)
 				pFixNode = pRoot;
 			}
 		}
-		//2. Èç¹ûµ÷Õû½ÚµãÊÇ¸¸½ÚµãµÄÓÒº¢×Ó
+		//2. å¦‚æœè°ƒæ•´èŠ‚ç‚¹æ˜¯çˆ¶èŠ‚ç‚¹çš„å³å­©å­
 		else if (pFixNode == pFixNode->pParent->pRight)
 		{
 			pRBTreeNode pBrotherNode = pFixNode->pParent->pLeft;
-			//2.1 Èç¹ûĞÖµÜ½ÚµãÎªºìÉ«½Úµã£¬ÔòÖ»ÄÜÍ¨¹ıÑ¡Ôñµ÷Õû³ÉÆäËûµÄÇé¿ö£¬ÔÙÀ´´¦Àí
+			//2.1 å¦‚æœå…„å¼ŸèŠ‚ç‚¹ä¸ºçº¢è‰²èŠ‚ç‚¹ï¼Œåˆ™åªèƒ½é€šè¿‡é€‰æ‹©è°ƒæ•´æˆå…¶ä»–çš„æƒ…å†µï¼Œå†æ¥å¤„ç†
 			if (RBT_COLOR_RED == pBrotherNode->Color)
 			{
-				//°ÑĞÖµÜ½ÚµãµÄÑÕÉ«¸ÄÎªºÚÉ«
+				//æŠŠå…„å¼ŸèŠ‚ç‚¹çš„é¢œè‰²æ”¹ä¸ºé»‘è‰²
 				pBrotherNode->Color = RBT_COLOR_BLACK;
-				//°Ñ¸¸½ÚµãµÄÑÕÉ«¸ÄÎªºìÉ«
+				//æŠŠçˆ¶èŠ‚ç‚¹çš„é¢œè‰²æ”¹ä¸ºçº¢è‰²
 				pFixNode->pParent->Color = RBT_COLOR_RED;
-				//ÒÔ¸¸½ÚµãÎª¸ù£¬½øĞĞÓÒĞı
+				//ä»¥çˆ¶èŠ‚ç‚¹ä¸ºæ ¹ï¼Œè¿›è¡Œå³æ—‹
 				pRBTreeNode pPivot = pFixNode->pParent;
 				pRBTreeNode pNewTop = nullptr;
-				//Í¬Ñù±¸·İ¸¸½ÚµãÖ¸Õë
+				//åŒæ ·å¤‡ä»½çˆ¶èŠ‚ç‚¹æŒ‡é’ˆ
 				pRBTreeNode pBackParent = pFixNode->pParent;
 				//
 				if (pRoot == pPivot)
@@ -320,34 +320,34 @@ void RBTree::DeleteFixUp(pRBTreeNode pFixNode)
 					SingleRight(pPivot->pParent->pRight, pNewTop);
 				}
 
-				//»Ö¸´pFixNodeµÄParentÖ¸Õë
+				//æ¢å¤pFixNodeçš„ParentæŒ‡é’ˆ
 				pFixNode->pParent = pBackParent;
 			}
-			//2.2 Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«ÇÒĞÖµÜ½ÚµãµÄ×óÓÒº¢×Ó¾ùÎªºÚÉ«
+			//2.2 å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²ä¸”å…„å¼ŸèŠ‚ç‚¹çš„å·¦å³å­©å­å‡ä¸ºé»‘è‰²
 			else if (RBT_COLOR_BLACK == pBrotherNode->pLeft->Color&&RBT_COLOR_BLACK == pBrotherNode->pRight->Color)
 			{
-				//ĞÖµÜ½ÚµãµÄÑÕÉ«¸ÄÎªºìÉ«
+				//å…„å¼ŸèŠ‚ç‚¹çš„é¢œè‰²æ”¹ä¸ºçº¢è‰²
 				pBrotherNode->Color = RBT_COLOR_RED;
-				//FixUpNode ĞŞ¸ÄÎª¸¸½Úµã
+				//FixUpNode ä¿®æ”¹ä¸ºçˆ¶èŠ‚ç‚¹
 				pFixNode = pFixNode->pParent;
 			}
-			//2.3 Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«£¬²¢ÇÒĞÖµÜ½ÚµãÓÒº¢×ÓÎªºìÉ«£¬×óº¢×ÓÎªºÚÉ«
+			//2.3 å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²ï¼Œå¹¶ä¸”å…„å¼ŸèŠ‚ç‚¹å³å­©å­ä¸ºçº¢è‰²ï¼Œå·¦å­©å­ä¸ºé»‘è‰²
 			else if (RBT_COLOR_BLACK == pBrotherNode->pLeft->Color&&RBT_COLOR_RED == pBrotherNode->pRight->Color)
 			{
-				//½»»»ÑÕÉ«
+				//äº¤æ¢é¢œè‰²
 				RBTColor tempNodeColor = pBrotherNode->pRight->Color;
 				pBrotherNode->pRight->Color = pBrotherNode->Color;
 				pBrotherNode->Color = tempNodeColor;
 
-				//±¸·İparentÖ¸Õë
+				//å¤‡ä»½parentæŒ‡é’ˆ
 				pRBTreeNode pBackParent = pFixNode->pParent;
-				//ÒÔpBrotherNode½øĞĞÓÒĞı
+				//ä»¥pBrotherNodeè¿›è¡Œå³æ—‹
 				pRBTreeNode pNewTop = nullptr;
 				SingleLeft(pBrotherNode->pParent->pLeft, pNewTop);
-				//»Ö¸´pFixNodeµÄparentÖ¸Õë
+				//æ¢å¤pFixNodeçš„parentæŒ‡é’ˆ
 				pFixNode->pParent = pBrotherNode;
 			}
-			//2.4. Èç¹ûĞÖµÜ½ÚµãÊÇºÚÉ«,ÇÒĞÖµÜ½Úµã×óº¢×ÓÊÇºìÉ«,ÓÒº¢×ÓÑÕÉ«²»ÏŞ
+			//2.4. å¦‚æœå…„å¼ŸèŠ‚ç‚¹æ˜¯é»‘è‰²,ä¸”å…„å¼ŸèŠ‚ç‚¹å·¦å­©å­æ˜¯çº¢è‰²,å³å­©å­é¢œè‰²ä¸é™
 			else if (RBT_COLOR_RED == pBrotherNode->pLeft->Color)
 			{
 				pBrotherNode->Color = pFixNode->pParent->Color;
@@ -367,7 +367,7 @@ void RBTree::DeleteFixUp(pRBTreeNode pFixNode)
 				{
 					SingleRight(pPivot->pParent->pRight, pNewTop);
 				}
-				//ÔÚÖ´ĞĞÍêÕâÒ»²½ºó£¬Ò»¶¨»áµ÷ÕûºÃ£¬Ö±½ÓÉèÖÃÎª¸ù½ÚµãÏÂ´ÎÍË³ö
+				//åœ¨æ‰§è¡Œå®Œè¿™ä¸€æ­¥åï¼Œä¸€å®šä¼šè°ƒæ•´å¥½ï¼Œç›´æ¥è®¾ç½®ä¸ºæ ¹èŠ‚ç‚¹ä¸‹æ¬¡é€€å‡º
 				pFixNode = pRoot;
 			}
 		}
@@ -388,17 +388,17 @@ void RBTree::SingleLeft(pRBTreeNode & pNode, pRBTreeNode & newTop)
 	pRBTreeNode k2 = pNode;
 	pRBTreeNode k1 = pNode->pRight;
 	k2->pRight = k1->pLeft;
-	//ĞŞ¸Äk1×óº¢×ÓµÄ¸¸½Úµã
+	//ä¿®æ”¹k1å·¦å­©å­çš„çˆ¶èŠ‚ç‚¹
 	if (k1->pLeft)
 	{
 		k1->pLeft->pParent = k2;
 	}
 	k1->pLeft = k2;
-	//ĞŞ¸Äk1µÄ¸¸½Úµã
+	//ä¿®æ”¹k1çš„çˆ¶èŠ‚ç‚¹
 	k1->pParent = pNode->pParent;
-	//ĞŞ¸Äk2µÄ¸¸½Úµã
+	//ä¿®æ”¹k2çš„çˆ¶èŠ‚ç‚¹
 	k2->pParent = k1;
-	//·µ»Ø½á¹û
+	//è¿”å›ç»“æœ
 	pNode = k1;
 	newTop = k1;
 }
@@ -416,40 +416,40 @@ void RBTree::SingleRight(pRBTreeNode & pNode, pRBTreeNode & newTop)
 	pRBTreeNode k2 = pNode;
 	pRBTreeNode k1 = pNode->pLeft;
 	k2->pLeft = k1->pRight;
-	//ĞŞ¸Äk1ÓÒº¢×ÓµÄ¸¸½Úµã
+	//ä¿®æ”¹k1å³å­©å­çš„çˆ¶èŠ‚ç‚¹
 	if (k1->pRight)
 	{
 		k1->pRight->pParent = k2;
 	}
 	k1->pRight = k2;
-	//ĞŞ¸Äk1µÄ¸¸½Úµã
+	//ä¿®æ”¹k1çš„çˆ¶èŠ‚ç‚¹
 	k1->pParent = pNode->pParent;
-	//ĞŞ¸Äk2µÄ¸¸½Úµã
+	//ä¿®æ”¹k2çš„çˆ¶èŠ‚ç‚¹
 	k2->pParent = k1;
-	//·µ»Ø½á¹û
+	//è¿”å›ç»“æœ
 	pNode = k1;
 	newTop = k1;
 }
 
 void RBTree::ReplaceParent(pRBTreeNode pBeReplacedNode, pRBTreeNode pReplaceNode)
 {
-	//Ìæ»»½Úµã²¢ĞŞ¸Ä¸¸½ÚµãµÄ²Ù×÷
-	//1. Èç¹ûpBeReplacedNodeÊÇ¸ù½Úµã
+	//æ›¿æ¢èŠ‚ç‚¹å¹¶ä¿®æ”¹çˆ¶èŠ‚ç‚¹çš„æ“ä½œ
+	//1. å¦‚æœpBeReplacedNodeæ˜¯æ ¹èŠ‚ç‚¹
 	if (pBeReplacedNode == pRoot)
 	{
 		pRoot = pReplaceNode;
 	}
-	//2. Èç¹ûpBeReplacedNodeÊÇ¸¸½ÚµãµÄ×óº¢×Ó
+	//2. å¦‚æœpBeReplacedNodeæ˜¯çˆ¶èŠ‚ç‚¹çš„å·¦å­©å­
 	else if (pBeReplacedNode == pBeReplacedNode->pParent->pLeft)
 	{
 		pBeReplacedNode->pParent->pLeft = pReplaceNode;
 	}
-	//3. Èç¹ûpBeReplacedNodeÊÇ¸¸½ÚµãµÄÓÒº¢×Ó
+	//3. å¦‚æœpBeReplacedNodeæ˜¯çˆ¶èŠ‚ç‚¹çš„å³å­©å­
 	else if (pBeReplacedNode == pBeReplacedNode->pParent->pRight)
 	{
 		pBeReplacedNode->pParent->pRight = pReplaceNode;
 	}
-	//4. ĞŞ¸ÄpReplaceNodeµÄ¸¸Ç×½Úµã
+	//4. ä¿®æ”¹pReplaceNodeçš„çˆ¶äº²èŠ‚ç‚¹
 	pReplaceNode->pParent = pBeReplacedNode->pParent;
 }
 
@@ -484,19 +484,19 @@ RBTree::~RBTree()
 	if (!isEmpty())
 	{
 		std::queue<pRBTreeNode>nodeQue;
-		nodeQue.push(pRoot);								//¸ù½ÚµãÈë¶Ó
-		while (!nodeQue.empty())							//¶ÓÁĞ·Ç¿Õ
+		nodeQue.push(pRoot);								//æ ¹èŠ‚ç‚¹å…¥é˜Ÿ
+		while (!nodeQue.empty())							//é˜Ÿåˆ—éç©º
 		{
 			pRBTreeNode pNode = nodeQue.front();
 			pRBTreeNode pLeft = pNode->pLeft;
 			pRBTreeNode pRight = pNode->pRight;
-			//³ö¶ÓÊÍ·Å×ÊÔ´
+			//å‡ºé˜Ÿé‡Šæ”¾èµ„æº
 			nodeQue.pop();
 			if (pLeft != pNil)nodeQue.push(pLeft);
 			if (pRight != pNil)nodeQue.push(pRight);
 		}
 	}
-	if (pNil)												//Èç¹ûÊÇ¿Õ½Úµã
+	if (pNil)												//å¦‚æœæ˜¯ç©ºèŠ‚ç‚¹
 	{
 		delete pNil;
 		pNil = nullptr;
@@ -538,30 +538,30 @@ void RBTree::BFS()
 	int TreeHeight = 0;
 	while (!nodeQue.empty())
 	{
-		int nCurrentLevelSize = nodeQue.size();						//¼ÇÂ¼µ±Ç°²ãÔªËØµÄ¸öÊı
+		int nCurrentLevelSize = nodeQue.size();						//è®°å½•å½“å‰å±‚å…ƒç´ çš„ä¸ªæ•°
 		int nCnt = 0;
-		std::cout << "µÚ" << TreeHeight + 1 << "²ã";
+		std::cout << "ç¬¬" << TreeHeight + 1 << "å±‚";
 		while (nCnt < nCurrentLevelSize)
 		{
 			pRBTreeNode acessNode = nodeQue.front();
 			nodeQue.pop();
 			if (acessNode == pRoot)
 			{
-				std::cout << acessNode->Value << "¸ù½Úµã£¬ÑÕÉ«" << acessNode->Color << ")" << ' ';
+				std::cout << acessNode->Value << "æ ¹èŠ‚ç‚¹ï¼Œé¢œè‰²" << acessNode->Color << ")" << ' ';
 			}
 			else
 			{
 				if (acessNode->pParent->pLeft == acessNode)
 				{
-					std::cout << "[(" << acessNode->Value << "ÑÕÉ«" << acessNode->Color << ')' << '(' << acessNode->pParent->Value << "µÄ×óº¢×Ó)]" << ' ';
+					std::cout << "[(" << acessNode->Value << "é¢œè‰²" << acessNode->Color << ')' << '(' << acessNode->pParent->Value << "çš„å·¦å­©å­)]" << ' ';
 				}
 				else if (acessNode->pParent->pRight == acessNode)
 				{
-					std::cout << "[(" << acessNode->Value << "ÑÕÉ«" << acessNode->Color << ')' << '(' << acessNode->pParent->Value << "µÄÓÒº¢×Ó)]" << ' ';
+					std::cout << "[(" << acessNode->Value << "é¢œè‰²" << acessNode->Color << ')' << '(' << acessNode->pParent->Value << "çš„å³å­©å­)]" << ' ';
 				}
 			}
 
-			//ÏÂÒ»²ãµÄÔªËØ
+			//ä¸‹ä¸€å±‚çš„å…ƒç´ 
 			pRBTreeNode pLeft = acessNode->pLeft;
 			pRBTreeNode pRight = acessNode->pRight;
 			if (pNil != pLeft)
@@ -580,7 +580,7 @@ void RBTree::BFS()
 	std::cout << std::endl;
 }
 
-bool RBTree::isEmpty()											//ÅĞ¿Õ
+bool RBTree::isEmpty()											//åˆ¤ç©º
 {
 	return pRoot == nullptr;
 }
@@ -615,20 +615,20 @@ bool RBTree::GetMin(pRBTreeNode pNode, int & MinValue)
 void RBTree::DeleteElement(int DeleteValue)
 {
 	/*
-	É¾³ı²Ù×÷
-	»ù±¾Ë¼Â·ÈçÏÂ£º
-	1. ½«ºìºÚÊ÷µ±×öÒ»¿Ã¶ş²æ²éÕÒÊ÷£¬½«½ÚµãÉ¾³ı¡£
-	·ÖÈıÖÖÇé¿ö£º
-	1. ±»É¾³ı½ÚµãÃ»ÓĞ¶ù×Ó£¬¼´ÎªÒ¶½Úµã£¬´ËÊ±Ö±½ÓÉ¾³ı¼´¿É¡£ÓÃ¿Õ½Úµã¶¥ÌæËüµÄÎ»ÖÃ¡£
-	2. ±»É¾³ı½ÚµãÖ»ÓĞÒ»¸ö×Ó½Úµã£¬´ËÊ±£¬Ö±½ÓÉ¾³ı¸Ã½Úµã£¬È»ºóÓÃ¸Ã½ÚµãµÄÎ¨Ò»×Ó½Úµã¶¥ÌæËû¡£
-	3. ±»É¾³ı½ÚµãÓĞÁ½¸ö×Ó½Úµã£¬ÔòÒªÏÈÕÒµ½ËüµÄÖ±½Óºó¼Ì½Úµã£¬°ÑÖµ¸´ÖÆµ½ËüµÄÎ»ÖÃ£¬È»ºóÉ¾³ıËüµÄºó¼Ì½Úµã£¬ÒòÎªËüµÄºó¼Ì½Úµã²»¿ÉÄÜÓĞÁ½¸ö·Ç¿Õ×Ó½Úµã£¬ËùÒÔÕâ¸ö¹ı³Ì×î¶àÖ»½øĞĞÒ»´Î¡£
-	2. ĞŞÕıÕâ¿ÃÊ÷
-	ÔÚÉ¾³ı½Úµãºó£¬ÓĞ¿ÉÄÜÎ¥·´2,4,5Èı¸öÔ¼ÊøÌõ¼ş£¬µÚ¶ş²½¼´ÊÇµ÷ÕûÕû¿ÃÊ÷£¬Ê¹Ö®Âú×ãÔ¼ÊøÌõ¼ş¡£
+	åˆ é™¤æ“ä½œ
+	åŸºæœ¬æ€è·¯å¦‚ä¸‹ï¼š
+	1. å°†çº¢é»‘æ ‘å½“åšä¸€æ£µäºŒå‰æŸ¥æ‰¾æ ‘ï¼Œå°†èŠ‚ç‚¹åˆ é™¤ã€‚
+	åˆ†ä¸‰ç§æƒ…å†µï¼š
+	1. è¢«åˆ é™¤èŠ‚ç‚¹æ²¡æœ‰å„¿å­ï¼Œå³ä¸ºå¶èŠ‚ç‚¹ï¼Œæ­¤æ—¶ç›´æ¥åˆ é™¤å³å¯ã€‚ç”¨ç©ºèŠ‚ç‚¹é¡¶æ›¿å®ƒçš„ä½ç½®ã€‚
+	2. è¢«åˆ é™¤èŠ‚ç‚¹åªæœ‰ä¸€ä¸ªå­èŠ‚ç‚¹ï¼Œæ­¤æ—¶ï¼Œç›´æ¥åˆ é™¤è¯¥èŠ‚ç‚¹ï¼Œç„¶åç”¨è¯¥èŠ‚ç‚¹çš„å”¯ä¸€å­èŠ‚ç‚¹é¡¶æ›¿ä»–ã€‚
+	3. è¢«åˆ é™¤èŠ‚ç‚¹æœ‰ä¸¤ä¸ªå­èŠ‚ç‚¹ï¼Œåˆ™è¦å…ˆæ‰¾åˆ°å®ƒçš„ç›´æ¥åç»§èŠ‚ç‚¹ï¼ŒæŠŠå€¼å¤åˆ¶åˆ°å®ƒçš„ä½ç½®ï¼Œç„¶ååˆ é™¤å®ƒçš„åç»§èŠ‚ç‚¹ï¼Œå› ä¸ºå®ƒçš„åç»§èŠ‚ç‚¹ä¸å¯èƒ½æœ‰ä¸¤ä¸ªéç©ºå­èŠ‚ç‚¹ï¼Œæ‰€ä»¥è¿™ä¸ªè¿‡ç¨‹æœ€å¤šåªè¿›è¡Œä¸€æ¬¡ã€‚
+	2. ä¿®æ­£è¿™æ£µæ ‘
+	åœ¨åˆ é™¤èŠ‚ç‚¹åï¼Œæœ‰å¯èƒ½è¿å2,4,5ä¸‰ä¸ªçº¦æŸæ¡ä»¶ï¼Œç¬¬äºŒæ­¥å³æ˜¯è°ƒæ•´æ•´æ£µæ ‘ï¼Œä½¿ä¹‹æ»¡è¶³çº¦æŸæ¡ä»¶ã€‚
 	*/
 
 	if (isEmpty())
 		return;
-	//ÏÈÕÒµ½ÒªÉ¾³ıµÄ½Úµã
+	//å…ˆæ‰¾åˆ°è¦åˆ é™¤çš„èŠ‚ç‚¹
 	pRBTreeNode pCurrent = pRoot;
 	pRBTreeNode pDeletedNode = nullptr;
 	while (pNil != pCurrent)
@@ -647,74 +647,74 @@ void RBTree::DeleteElement(int DeleteValue)
 			break;
 		}
 	}
-	//2. Èç¹ûÎ´ÕÒµ½£¬ÔòÖ±½ÓÍË³ö
+	//2. å¦‚æœæœªæ‰¾åˆ°ï¼Œåˆ™ç›´æ¥é€€å‡º
 	if (nullptr == pDeletedNode)return;
-	//3. Ö´ĞĞÉ¾³ı²Ù×÷£¬¼ÆËã³öpDeletedNode,pRealDeleteNode,pFixUpNode.
+	//3. æ‰§è¡Œåˆ é™¤æ“ä½œï¼Œè®¡ç®—å‡ºpDeletedNode,pRealDeleteNode,pFixUpNode.
 
 	pRBTreeNode pRealDeleteNode = nullptr;
 	pRBTreeNode pFixUpNode = nullptr;
 	RBTColor RealDeleteColor;
 
-	//3.1Èç¹û×ó×ÓÊ÷Îª¿Õ
+	//3.1å¦‚æœå·¦å­æ ‘ä¸ºç©º
 	if (pNil == pDeletedNode->pLeft)
 	{
 		pRealDeleteNode = pDeletedNode;
 		RealDeleteColor = pRealDeleteNode->Color;
 		pFixUpNode = pRealDeleteNode->pRight;
-		//Ìæ»»
+		//æ›¿æ¢
 		ReplaceParent(pRealDeleteNode, pRealDeleteNode->pRight);
 	}
-	//3.2 Èç¹ûÓÒ×ÓÊ÷Îª¿Õ
+	//3.2 å¦‚æœå³å­æ ‘ä¸ºç©º
 	else if (pNil == pDeletedNode->pRight)
 	{
 		pRealDeleteNode = pDeletedNode;
 		RealDeleteColor = pRealDeleteNode->Color;
 		pFixUpNode = pRealDeleteNode->pLeft;
-		//Ìæ»»
+		//æ›¿æ¢
 		ReplaceParent(pRealDeleteNode, pRealDeleteNode->pLeft);
 	}
-	//3.3 Èç¹û×óÓÒ×ÓÊ÷¶¼²»Îª¿Õ
+	//3.3 å¦‚æœå·¦å³å­æ ‘éƒ½ä¸ä¸ºç©º
 	else
 	{
 		/*
-		¿ÉÒÔÓÃÓÒ×ÓÊ÷µÄ×îĞ¡µÄ½Úµã»òÕß×ó×ÓÊ÷µÄ×î´óµÄ½ÚµãÀ´Ìæ»»£¬ÕâÀïÑ¡ÔñÓÒ×ÓÊ÷µÄ×îĞ¡µÄ½Úµã¡£ÕâÑù¿ÉÒÔ±£Ö¤¶ş²æËÑË÷Ê÷µÄĞÔÖÊ²»±ä
+		å¯ä»¥ç”¨å³å­æ ‘çš„æœ€å°çš„èŠ‚ç‚¹æˆ–è€…å·¦å­æ ‘çš„æœ€å¤§çš„èŠ‚ç‚¹æ¥æ›¿æ¢ï¼Œè¿™é‡Œé€‰æ‹©å³å­æ ‘çš„æœ€å°çš„èŠ‚ç‚¹ã€‚è¿™æ ·å¯ä»¥ä¿è¯äºŒå‰æœç´¢æ ‘çš„æ€§è´¨ä¸å˜
 		*/
-		//»ñÈ¡×¼±¸É¾³ı½ÚµãµÄÓÒ×ÓÊ÷µÄ×îĞ¡½Úµã£¬pRealDeleteNodeÒ»¶¨²»ÊÇpNil
+		//è·å–å‡†å¤‡åˆ é™¤èŠ‚ç‚¹çš„å³å­æ ‘çš„æœ€å°èŠ‚ç‚¹ï¼ŒpRealDeleteNodeä¸€å®šä¸æ˜¯pNil
 		bool GetMinRet = GetMinNode(pDeletedNode->pRight, pRealDeleteNode);
 		assert(GetMinRet);
 		assert(pRealDeleteNode != pNil);
 		RealDeleteColor = pRealDeleteNode->Color;
-		//×îĞ¡µÄµãµÄ×ó×ÓÊ÷ÒÑ¶¨Î»pNil,ËùÒÔpRight¾ÍÊÇËüµÄºó¼Ì½Úµã¡£
+		//æœ€å°çš„ç‚¹çš„å·¦å­æ ‘å·²å®šä½pNil,æ‰€ä»¥pRightå°±æ˜¯å®ƒçš„åç»§èŠ‚ç‚¹ã€‚
 		pFixUpNode = pRealDeleteNode->pRight;
-		//Ë¼Â·ÊÇÓÃ×îĞ¡µã£¨pRealDeleteNode£©À´Ìæ»»ĞèÒªÉ¾³ıµÄµã£¨pDeletedNode£©µÄÎ»ÖÃ£¬·ÖÁ½ÖÖÇé¿ö
+		//æ€è·¯æ˜¯ç”¨æœ€å°ç‚¹ï¼ˆpRealDeleteNodeï¼‰æ¥æ›¿æ¢éœ€è¦åˆ é™¤çš„ç‚¹ï¼ˆpDeletedNodeï¼‰çš„ä½ç½®ï¼Œåˆ†ä¸¤ç§æƒ…å†µ
 		if (pRealDeleteNode->pParent == pDeletedNode)
 		{
 			pFixUpNode->pParent = pRealDeleteNode;
 		}
 		else
 		{
-			//ÈÃpRealDeleteNode¸¸½ÚµãÖ¸Ïò pRealDeleteNode->pRight
+			//è®©pRealDeleteNodeçˆ¶èŠ‚ç‚¹æŒ‡å‘ pRealDeleteNode->pRight
 			ReplaceParent(pRealDeleteNode, pRealDeleteNode->pRight);
-			//ÈÃpRealDeleteNodeµÄÓÒ½Úµã½Ó¹ÜÔ­À´pDeletedNodeµÄÓÒ½Úµã
+			//è®©pRealDeleteNodeçš„å³èŠ‚ç‚¹æ¥ç®¡åŸæ¥pDeletedNodeçš„å³èŠ‚ç‚¹
 			pRealDeleteNode->pRight = pDeletedNode->pRight;
-			//ÈÃpRealDeleteNodeµÄÓÒ½ÚµãµÄ¸¸½ÚµãÖ¸ÏòpRealDeleteNode(ÓÒ×ÓÊ÷Ò»¶¨²»ÎªpNil)
+			//è®©pRealDeleteNodeçš„å³èŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹æŒ‡å‘pRealDeleteNode(å³å­æ ‘ä¸€å®šä¸ä¸ºpNil)
 			pRealDeleteNode->pRight->pParent = pRealDeleteNode;
 		}
-		//ÈÃpDeleteNode¸¸½ÚµãÖ¸ÏòpRealDeleteNode
+		//è®©pDeleteNodeçˆ¶èŠ‚ç‚¹æŒ‡å‘pRealDeleteNode
 		ReplaceParent(pDeletedNode, pRealDeleteNode);
-		//ÈÃpRealDeleteNodeµÄ×ó½Úµã½Ó¹ÜÔ­À´pDeleteNodeµÄÓÒ½Úµã
+		//è®©pRealDeleteNodeçš„å·¦èŠ‚ç‚¹æ¥ç®¡åŸæ¥pDeleteNodeçš„å³èŠ‚ç‚¹
 		pRealDeleteNode->pLeft = pDeletedNode->pLeft;
-		//ÈÃpRealDeleteNodeµÄ×óº¢×ÓµÄ¸¸½ÚµãÖ¸ÏòpRealDeleteNode(×ó×ÓÊ÷Ò»¶¨²»ÎªpNil)
+		//è®©pRealDeleteNodeçš„å·¦å­©å­çš„çˆ¶èŠ‚ç‚¹æŒ‡å‘pRealDeleteNode(å·¦å­æ ‘ä¸€å®šä¸ä¸ºpNil)
 		pRealDeleteNode->pLeft->pParent = pRealDeleteNode;
-		// Ê¹ÓÃpDeleteNodeµÄÑÕÉ«
+		// ä½¿ç”¨pDeleteNodeçš„é¢œè‰²
 		pRealDeleteNode->Color = pDeletedNode->Color;
 	}
-	//4. ÔÚpFixUpNodeµãÖ´ĞĞµ÷Õû
+	//4. åœ¨pFixUpNodeç‚¹æ‰§è¡Œè°ƒæ•´
 	if (RBT_COLOR_BLACK == RealDeleteColor)
 	{
 		DeleteFixUp(pFixUpNode);
 	}
-	//5. ´¦Àí¸ù½ÚµãÎÊÌâ
+	//5. å¤„ç†æ ¹èŠ‚ç‚¹é—®é¢˜
 	if (pRoot == pNil)
 		pRoot = nullptr;
 	delete pDeletedNode;
@@ -723,13 +723,13 @@ void RBTree::DeleteElement(int DeleteValue)
 void RBTree::InsertData(int InsertValue)
 {
 	/*
-	²åÈë½Úµã£º
-	ÒÔ¶ş²æ²éÕÒÊ÷µÄ·½·¨Ôö¼ÓÒ»¸ö½Úµã¡£
-	Ò»¿ªÊ¼Òª°Ñ½ÚµãµÄÑÕÉ«±ê¼ÇÎªºìÉ«¡£Èç¹ûÉèÎªºÚÉ«£¬»áµ¼ÖÂ¸ùµ½Ò¶×ÓµÄÂ·¾¶ÉÏ£¬»áÓĞÒ»ÌõÂ·¶àÒ»¸ö¶îÍâµÄºÚÉ«½Úµã¡£Õâ¸öÊÇºÜÄÑµ÷ÕûµÄ¡£
-	ÁíÒ»¸öÀí½âÊÇ£¬°Ñ²åÈëµÄ½Úµã×ÅÉ«ÎªºìÉ«£¬²»»áÎ¥±³Ô¼ÊøÌõ¼ş1235£¬Ö»Î¥±³Ò»¸öÔ¼ÊøÌõ¼ş£¬ĞèÒª´¦ÀíµÄÇé¿ö»áºÜÉÙ¡£
-	²åÈëºó£¬Í¨¹ıÒ»ÏµÁĞµÄĞı×ª¡¢×ÅÉ«µÈ²Ù×÷£¬Ê¹Ö®ÖØĞÂ³ÉÎªÒ»¿ÅºìºÚÊ÷¡£
+	æ’å…¥èŠ‚ç‚¹ï¼š
+	ä»¥äºŒå‰æŸ¥æ‰¾æ ‘çš„æ–¹æ³•å¢åŠ ä¸€ä¸ªèŠ‚ç‚¹ã€‚
+	ä¸€å¼€å§‹è¦æŠŠèŠ‚ç‚¹çš„é¢œè‰²æ ‡è®°ä¸ºçº¢è‰²ã€‚å¦‚æœè®¾ä¸ºé»‘è‰²ï¼Œä¼šå¯¼è‡´æ ¹åˆ°å¶å­çš„è·¯å¾„ä¸Šï¼Œä¼šæœ‰ä¸€æ¡è·¯å¤šä¸€ä¸ªé¢å¤–çš„é»‘è‰²èŠ‚ç‚¹ã€‚è¿™ä¸ªæ˜¯å¾ˆéš¾è°ƒæ•´çš„ã€‚
+	å¦ä¸€ä¸ªç†è§£æ˜¯ï¼ŒæŠŠæ’å…¥çš„èŠ‚ç‚¹ç€è‰²ä¸ºçº¢è‰²ï¼Œä¸ä¼šè¿èƒŒçº¦æŸæ¡ä»¶1235ï¼Œåªè¿èƒŒä¸€ä¸ªçº¦æŸæ¡ä»¶ï¼Œéœ€è¦å¤„ç†çš„æƒ…å†µä¼šå¾ˆå°‘ã€‚
+	æ’å…¥åï¼Œé€šè¿‡ä¸€ç³»åˆ—çš„æ—‹è½¬ã€ç€è‰²ç­‰æ“ä½œï¼Œä½¿ä¹‹é‡æ–°æˆä¸ºä¸€é¢—çº¢é»‘æ ‘ã€‚
 	*/
-	//²åÈëµÄÌØÊâÇé¿ö£ºÒª²åÈëµÄ½ÚµãÊÇµÚÒ»¸ö½Úµã
+	//æ’å…¥çš„ç‰¹æ®Šæƒ…å†µï¼šè¦æ’å…¥çš„èŠ‚ç‚¹æ˜¯ç¬¬ä¸€ä¸ªèŠ‚ç‚¹
 	if (isEmpty())
 	{
 		pRoot = new RBTreeNode();
@@ -740,7 +740,7 @@ void RBTree::InsertData(int InsertValue)
 		pRoot->pParent = pNil;
 		return;
 	}
-	//2. ÕÒµ½ĞèÒª²åÈëµÄÎ»ÖÃ
+	//2. æ‰¾åˆ°éœ€è¦æ’å…¥çš„ä½ç½®
 	pRBTreeNode pPreNode = pRoot->pParent;
 	pRBTreeNode pCurrent = pRoot;
 	while (pNil != pCurrent)
@@ -755,7 +755,7 @@ void RBTree::InsertData(int InsertValue)
 			pCurrent = pCurrent->pRight;
 		}
 	}
-	//3. °ÑÊı¾İ²åÈëµ½ÕıÈ·µÄÎ»ÖÃ
+	//3. æŠŠæ•°æ®æ’å…¥åˆ°æ­£ç¡®çš„ä½ç½®
 	pRBTreeNode pInsertNode = new RBTreeNode();
 	pInsertNode->Color = RBT_COLOR_RED;
 	pInsertNode->Value = InsertValue;
@@ -770,6 +770,6 @@ void RBTree::InsertData(int InsertValue)
 	{
 		pPreNode->pRight = pInsertNode;
 	}
-	//4. µ÷Õû
+	//4. è°ƒæ•´
 	InsertFixUP(pInsertNode);
 }
