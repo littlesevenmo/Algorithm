@@ -10,7 +10,7 @@
 
 ![](./image/3.1.png)
 
-首先哨兵 **j** 开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵 **j** 先出动，这一点非常重要（请自己想一想为什么）。哨兵 **j** 一步一步地向左挪动（即 **j--**），直到找到一个小于 **6** 的数停下来。接下来哨兵 **i** 再一步一步向右挪动（即 **i++**），直到找到一个数大于 **6** 的数停下来。最后哨兵 **j** 停在了数字 **5** 面前，哨兵 **i** 停在了数字 **7** 面前。
+首先哨兵 **j** 开始出动。因为此处设置的基准数是最左边的数，所以需要让哨兵 **j** 先出动，这一点非常重要（其实也不一定）。哨兵 **j** 一步一步地向左挪动（即 **j--**），直到找到一个小于 **6** 的数停下来。接下来哨兵 **i** 再一步一步向右挪动（即 **i++**），直到找到一个数大于 **6** 的数停下来。最后哨兵 **j** 停在了数字 **5** 面前，哨兵 **i** 停在了数字 **7** 面前。
 
 ![](./image/3.2.png)
 
@@ -110,9 +110,163 @@ int main()
 }
 ```
 
+先来解释一下为什么要先移动左边的数：
 
+以数列`2 1 4 7`为例，如果选择基准数`2`，并先移动右边的数，`i`将先移动到`4`，随后`j`也移动到`4`，由于不满足`i<j`，所以不交换，最后跳出循环，把基数归位时，是`2`和`4`进行交换，变成了`4 1 2 7`，出现错误。
 
+再来解释一下为什么先移动右边的数也行：
 
+先移动哪边取决于循环判断条件，如下代码中，则是先移动右边的：
+
+```cpp
+#include<iostream>
+#include<vector>
+#pragma warning(disable:4996)
+using namespace std;
+
+vector<int> v = { 2, 4, 6, 8, 10, 1, 3, 5, 9, 7 };
+
+void quicksort(int left, int right)
+{
+	int i = left, j = right, temp;
+	if (left > right)
+		return;
+	temp = v[left];
+
+	while (i <= j)					//注意这里的条件是<=
+	{
+		while (i <= j && v[i] <= temp)
+			i++;
+		while (i <= j && v[j] >= temp)
+			j--;
+		if (i < j)
+			swap(v[i++], v[j--]);
+		else
+			i++;
+	}
+	//最终将基数归位
+	v[left] = v[j];					//注意这里是j
+	v[j] = temp;					//注意这里是j
+	quicksort(left, j - 1);			//继续处理左边的，注意这里是j
+	quicksort(j + 1, right);		//继续处理右边的，注意这里是j
+}
+
+int main()
+{
+	quicksort(0, v.size() - 1);
+
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << ' ';
+	}
+	cout << endl;
+	system("pause");
+	return 0;
+}
+```
+
+挖坑法：
+
+另外一种比较好理解的是挖坑法。仍然选择最左边的作为基数，只不过在选择之后认为这个地方是个坑，由于是在左边挖的坑，所以需要从右边选择一个数来填上，这时候就要从右往左选择第一个小于基数的数来填上这个坑。
+
+在填上这个坑之后，认为原来的地方又是一个新坑，所以需要从左往右选择第一个大于基数的数填上。
+
+以此类推。
+
+代码（C++）：
+
+```cpp
+#include<iostream>
+#include<vector>
+#pragma warning(disable:4996)
+using namespace std;
+
+vector<int> v = { 4, 3, 7, 9, 5, 8, 1, 2, 6, 10 };
+
+void quicksort(int left, int right)
+{
+	int i = left, j = right, temp;
+	if (left > right)
+		return;
+	temp = v[left];
+
+	while (i < j)
+	{
+		while (i < j && v[j] >= temp)
+			j--;
+		if (i < j)
+			v[i] = v[j];
+		while (i < j && v[i] <= temp)
+			i++;
+		if (i < j)
+			v[j] = v[i];
+	}
+	//最终将基数归位
+	v[i] = temp;					//注意这里是i
+	quicksort(left, i - 1);			//继续处理左边的，注意这里是j
+	quicksort(i + 1, right);		//继续处理右边的，注意这里是j
+}
+
+int main()
+{
+	quicksort(0, v.size() - 1);
+
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << ' ';
+	}
+	cout << endl;
+	system("pause");
+	return 0;
+}
+```
+
+另外给出一种基数选择不是选左边的数，而是选择中间的数的快排。
+
+由于选择的是中间的数，所以就不存在最后再确定位置的情况了，直接每次迭代的时候都把数组分为左边全都小于基数，右边全都大于基数的情况。
+
+由于只是左右部分进行相互交换，所以先搜左边还是先搜右边都是可以的。
+
+```cpp
+#include<iostream>
+#include<vector>
+#pragma warning(disable:4996)
+using namespace std;
+
+vector<int> v = { 4, 3, 7, 9, 5, 8, 1, 2, 6, 10 };
+void quicksort(int left, int right)
+{
+	int i = left, j = right, temp;
+	if (left >= right)
+		return;
+	temp = v[(left+right)/2];
+
+	while (i <= j)
+	{
+		while (v[i] < temp)
+			i++;
+		while (v[j] > temp)		//这里无先后顺序的要求，先i或者先j都可以
+			j--;
+		if (i <= j)
+			swap(v[i++], v[j--]);
+	}
+	quicksort(left, j);			//继续处理左边的，注意这里是j
+	quicksort(i, right);		//继续处理右边的，注意这里是i
+}
+
+int main()
+{
+	quicksort(0, v.size() - 1);
+
+	for (int i = 0; i < v.size(); i++)
+	{
+		cout << v[i] << ' ';
+	}
+	cout << endl;
+	system("pause");
+	return 0;
+}
+```
 
 
 
@@ -121,4 +275,8 @@ int main()
 引用：
 
 1. <http://wiki.jikexueyuan.com/project/easy-learn-algorithm/fast-sort.html>
-2. 
+2. <https://blog.csdn.net/chinalwb/article/details/9295527>
+
+致谢：
+
+杨凯，杨崇志
